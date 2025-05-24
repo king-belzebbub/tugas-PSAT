@@ -18,9 +18,9 @@ class DokterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama'           => 'required|string|max:255',
-            'spesialisasi'   => 'required|string|max:255',
+            'spesialis'   => 'required|string|max:255',
             'jadwal_praktek' => 'required|string|max:255',
-            'no_str'         => 'required|string|unique:doctors,no_str|max:50'
+            'no_str'         => 'required|string|unique:dokters,no_str|max:50'
         ]);
 
         if ($validator->fails()) {
@@ -31,58 +31,58 @@ class DokterController extends Controller
             ], 422);
         }
 
-        $doctor = Dokter::create($validator->validated());
+        $dokter = Dokter::create($validator->validated());
 
         return response()->json([
             'success' => true,
-            'data'    => $doctor,
+            'data'    => $dokter,
             'message' => 'Dokter berhasil ditambahkan'
         ], 201);
     }
 
     public function show($id)
     {
-        $doctor = Dokter::find($id);
+        $dokter = Dokter::find($id);
 
-        if (!$doctor) {
+        if (!$dokter) {
             return response()->json(['message' => 'Dokter tidak ditemukan'], 404);
         }
 
-        return response()->json($doctor);
+        return response()->json($dokter);
     }
 
     public function update(Request $request, $id)
     {
-        $doctor = Dokter::find($id);
+        $dokter = Dokter::find($id);
 
-        if (!$doctor) {
+        if (!$dokter) {
             return response()->json(['message' => 'Dokter tidak ditemukan'], 404);
         }
 
         $validated = $request->validate([
             'nama'           => 'required|string|max:255',
-            'spesialisasi'   => 'required|string|max:255',
+            'spesialis'   => 'required|string|max:255',
             'jadwal_praktek' => 'required|string|max:255',
-            'no_str'         => 'required|string|max:50|unique:doctors,no_str,' . $id,
+            'no_str'         => 'required|string|max:50|unique:dokters,no_str,' . $id,
         ]);
 
-        $doctor->update($validated);
+        $dokter->update($validated);
 
         return response()->json([
             'message' => 'Data dokter berhasil diperbarui!',
-            'data'    => $doctor
+            'data'    => $dokter
         ]);
     }
 
     public function destroy($id)
     {
-        $doctor = Dokter::find($id);
+        $dokter = Dokter::find($id);
 
-        if (!$doctor) {
+        if (!$dokter) {
             return response()->json(['message' => 'Dokter tidak ditemukan'], 404);
         }
 
-        $doctor->delete();
+        $dokter->delete();
 
         return response()->json(['message' => 'Data dokter berhasil dihapus!']);
     }

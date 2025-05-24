@@ -12,6 +12,10 @@ Route::apiResource('dokter', Doktercontroller::class);
 Route::apiResource('tindakan', controller: Tindakancontroller::class);
 Route::apiResource('kunjungan', Kunjungancontroller::class);
 Route::post('/kunjungans/{kunjungan}/add-Tindakan', [Tindakancontroller::class, 'addTreatment']);
+Route::put('/pasien/{id}', [PasienController::class, 'update']);
+Route::patch('/pasien/{id}', [PasienController::class, 'update']);
+Route::delete('/pasien/{id}', [PasienController::class, 'destroy']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

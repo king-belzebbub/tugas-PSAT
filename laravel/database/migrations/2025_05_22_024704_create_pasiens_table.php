@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->integer('nik');
+            $table->string('nama', 255);
+            $table->string('nik', 20);
             $table->date('tgl_lahir');
-            $table->string('alamat');
-            $table->integer('no_hp');
+            $table->string('alamat', 255);
+            $table->string('no_hp', 255);
+            $table->timestamps();
         });
+
     }
 
     /**

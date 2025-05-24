@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nama');
             $table->string('spesialis');
             $table->string('jadwal_praktek');
-            $table->string('no_str');
-
+            $table->string('no_str')->unique();
+            $table->timestamps();
         });
     }
 

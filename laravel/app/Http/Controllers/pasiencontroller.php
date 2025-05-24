@@ -21,7 +21,7 @@ class PasienController extends Controller
             'nik'       => 'required|integer|unique:pasiens,nik',
             'tgl_lahir' => 'required|date',
             'alamat'    => 'required|string|max:255',
-            'no_hp'     => 'required|integer',
+            'no_hp'     => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -65,7 +65,7 @@ class PasienController extends Controller
             'nik'       => 'required|integer|unique:pasiens,nik,' . $id,
             'tgl_lahir' => 'required|date',
             'alamat'    => 'required|string|max:255',
-            'no_hp'     => 'required|integer',
+            'no_hp'     => 'required|string|max:255',
         ]);
 
         $pasien->update($validated);

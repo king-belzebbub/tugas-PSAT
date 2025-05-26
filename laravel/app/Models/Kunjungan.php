@@ -29,7 +29,7 @@ class Kunjungan extends Model
 
     public function detailTindakan()
     {
-        return $this->belongsTo(detai_tindakan::class);
+        return $this->belongsTo(detail_tindakan::class);
     }
 
     public function tindakan()
@@ -39,6 +39,6 @@ class Kunjungan extends Model
 
     public function Detai_tindakan()
     {
-        return $this->hasMany(detai_tindakan::class, 'foreign_key', 'local_key');
+        return $this->hasMany(detail_tindakan::class, 'foreign_key', 'local_key');
     }
 }

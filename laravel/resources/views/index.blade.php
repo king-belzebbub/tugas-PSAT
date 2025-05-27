@@ -16,7 +16,7 @@
             <a href="#" class="logo"><img src="/img/logo rs.jpg" width="60" height="60" /> <span>RS LIveal</span></a>
             <nav>
                 <ul>
-                    <li><a href="/pasien.html">pasien</a></li>
+                    <li><a href="{{ asset('pasien.blade.php') }}">pasien</a></li>
                     <li><a href="/dokter.html">dokter</a></li>
                     <li><a href="/tindakan.html">tindakan</a></li>
                     <li><a href="/kunjungan.html">kunjungan</a></li>

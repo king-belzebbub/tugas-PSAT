@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('/', 'index');
-Route::view('/pasien', 'pasien');
-Route::view('/services', 'services');
-Route::view('/doctors', 'doctors');
-Route::view('/contact', 'contact');
+Route::get('/', function () {
+    return view('index');
+});
 
+
+Route::get('/pasien', [PasienController::class, 'index']);

@@ -19,4 +19,11 @@ protected $fillable = ['nama', 'spesialis', 'jadwal_praktek', 'no_str'];
     {
         return $this->hasMany(Kunjungan::class, 'foreign_key', 'local_key');
     }
+
+
+public function index()
+{
+    $dokters = Dokter::all();
+    return view('dokter.index', compact('dokters'));
+}
 }

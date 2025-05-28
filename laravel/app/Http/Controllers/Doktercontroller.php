@@ -8,10 +8,18 @@ use Illuminate\Support\Facades\Validator;
 
 class DokterController extends Controller
 {
+
+
+    public function api()
+{
+    return response()->json(Dokter::all());
+}
+
     public function index()
     {
         $data = Dokter::all();
-        return response()->json($data, 200);
+        return view('dokter.index', compact('dokters'));
+
     }
 
     public function store(Request $request)

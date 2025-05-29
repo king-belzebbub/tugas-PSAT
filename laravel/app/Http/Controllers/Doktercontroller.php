@@ -15,12 +15,11 @@ class DokterController extends Controller
     return response()->json(Dokter::all());
 }
 
-    public function index()
-    {
-        $data = Dokter::all();
-        return view('dokter.index', compact('dokters'));
-
-    }
+public function index()
+{
+    $dokters = Dokter::all();
+    return view('dokter', compact('dokters'));
+}
 
     public function store(Request $request)
     {

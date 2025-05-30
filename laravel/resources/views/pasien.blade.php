@@ -1,20 +1,20 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Daftar Dokter</title>
-    <link rel="stylesheet" href="{{ asset('css/dokter.css') }}">
+    <title>pasien Dokter</title>
+    <link rel="stylesheet" href="{{ asset('css/pasien.css') }}">
 </head>
 
 <body>
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo"><img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}" width="150" height="150" /></a>
+            <a href="#" class="logo"><img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}" width="150"
+                    height="150" /></a>
             <nav>
                 <ul>
                     <li><a href="{{ url('/') }}">home</a></li>
                     <li><a href="{{ url('/pasien') }}">pasien</a></li>
-                    <li><a href="{{ url('/dokter') }}">Dokter</a></li>
+                   <li><a href="{{ url('/dokter') }}">Dokter</a></li>
                     <li><a href="/tindakan.html">tindakan</a></li>
                     <li><a href="/kunjungan.html">kunjungan</a></li>
                     <li><a href="/detail kunjungan.html">detail kunjungan</a></li>
@@ -24,24 +24,26 @@
     </header>
     <h1>Daftar Dokter</h1>
     <div class="container">
-        <table class="doctor-table">
+        <table class="pasien-table">
             <thead>
                 <tr>
                     <th>id</th>
                     <th>Nama</th>
-                    <th>Spesialis</th>
-                    <th>Jadwal</th>
-                    <th>no_str</th>
+                    <th>Nik</th>
+                    <th>Tgl_lahir</th>
+                    <th>Alamat</th>
+                    <th>No_hp</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($dokters as $dokter)
+                @foreach ($pasiens as $pasien)
                     <tr>
-                        <td>{{ $dokter->id }}</td>
-                        <td>{{ $dokter->nama }}</td>
-                        <td>{{ $dokter->spesialis }}</td>
-                        <td>{{ $dokter->jadwal_praktek }}</td>
-                        <td>{{ $dokter->no_str }}</td>
+                        <td>{{ $pasien->id }}</td>
+                        <td>{{ $pasien->nama }}</td>
+                        <td>{{ $pasien->nik }}</td>
+                        <td>{{ $pasien->tgl_lahir }}</td>
+                        <td>{{ $pasien->alamat }}</td>
+                        <td>{{ $pasien->no_hp }}</td>
                     </tr>
                 @endforeach
             </tbody>

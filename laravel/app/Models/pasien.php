@@ -21,4 +21,11 @@ class Pasien extends Model
         // 'pasien_id' = foreign key di tabel 'kunjungans'
         // 'id'        = primary key di tabel 'pasiens'
     }
+
+
+public function index()
+{
+    $dokters = Dokter::all();
+    return view('dokter.index', compact('dokters'));
+}
 }

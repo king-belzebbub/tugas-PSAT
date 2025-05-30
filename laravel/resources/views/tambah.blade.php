@@ -13,16 +13,25 @@
         <h2>Tambah Data</h2>
 
         <!-- Form Tambah Pasien -->
-        <form action="/pasien" method="POST" class="data-form">
+        <form action="{{ route('pasien.store') }}" method="POST">
             @csrf
-            <h3>Tambah Pasien</h3>
-            <input type="text" name="nama" placeholder="Nama Pasien" required />
-            <input type="text" name="Nik" placeholder="Nik" required />
-            <input type="text" name="Tgl_lahir" placeholder="TGL_lahir" required />
-            <input type="text" name="alamat" placeholder="Alamat" required />
-            <input type="text" name="no_telp" placeholder="No. Telepon" required />
-            <button type="submit">Simpan Pasien</button>
-        </form>
+
+            <label for="nama">Nama</label>
+            <input type="text" name="nama" id="nama" required>
+
+            <label for="nik">NIK</label>
+            <input type="text" name="nik" id="nik" required>
+
+            <label for="tgl_lahir">Tanggal Lahir</label>
+            <input type="date" name="tgl_lahir" id="tgl_lahir" required>
+
+            <label for="alamat">alamat</label>
+            <input type="text" name="alamat" id="alamat" required>
+
+            <label for="no_hp">Nomor HP</label>
+            <input type="text" name="no_hp" id="no_hp" required>
+
+            <button type="submit">Simpan</button> </form>
 
         <!-- Form Tambah Dokter -->
         <form action="/dokter" method="POST" class="data-form">

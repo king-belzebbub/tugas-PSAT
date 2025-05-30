@@ -8,10 +8,15 @@ use Illuminate\Support\Facades\Validator;
 
 class PasienController extends Controller
 {
+    public function api()
+    {
+        return response()->json(pasien::all());
+    }
+
     public function index()
     {
-        $data = pasien::all();
-        return response()->json($data, 200);
+        $pasiens = pasien::all();
+        return view('pasien', compact('pasiens'));
     }
 
     public function store(Request $request)

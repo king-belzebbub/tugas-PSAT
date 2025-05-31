@@ -1,0 +1,463 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background: #f9f9f9;
+    color: #333;
+    line-height: 1.5;
+    padding-top: 20px;
+    /* Tambahkan jarak dari atas untuk menghindari header menempel */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+/* Header */
+header {
+    background-color: #007BFF;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+    margin-bottom: 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+}
+
+span {
+    color: white;
+    border-radius: 4px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    font-weight: 550;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    background: #0056b3;
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    background: url('https://images.unsplash.com/photo-1588776814546-8c5b94b1410b?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+    position: relative;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 123, 255, 0.6);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.btn-primary,
+.btn-outline {
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    transition: background 0.3s, color 0.3s;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-outline:hover {
+    background-color: white;
+    color: #007BFF;
+}
+
+/* Layanan Unggulan */
+.services {
+    background: #fff;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #007BFF;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.service-item {
+    background: #f1f9ff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.1);
+    transition: transform 0.3s;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+}
+
+.service-icon {
+    background: #007BFF;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+}
+
+.service-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #004a99;
+}
+
+/* Profil Dokter */
+.doctors {
+    background: #f7f9fb;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.doctors h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #007BFF;
+}
+
+.doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.doctor-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.doctor-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.doctor-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 15px auto;
+    display: block;
+}
+
+.doctor-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #007BFF;
+    margin-bottom: 6px;
+}
+
+.doctor-specialty {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.btn-small {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-small:hover {
+    background-color: #0056b3;
+}
+
+/* Jadwal & Reservasi */
+.schedule {
+    background: #fff;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.schedule h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #007BFF;
+}
+
+.schedule-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+select,
+input[type="date"] {
+    padding: 12px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    flex: 1 1 150px;
+    min-width: 150px;
+}
+
+button.schedule-btn {
+    background-color: #007BFF;
+    border: none;
+    padding: 12px 30px;
+    color: white;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    flex: 1 1 150px;
+    min-width: 150px;
+    transition: background 0.3s;
+}
+
+button.schedule-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Testimoni & Sertifikasi */
+.testimonials {
+    background: #e6f0ff;
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.testimonials h2 {
+    color: #007BFF;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #004a99;
+}
+
+.testimonial-author {
+    font-weight: 700;
+    color: #333;
+}
+
+.certifications {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.certifications img {
+    height: 60px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.certifications img:hover {
+    opacity: 1;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer .contact-info {
+    margin-bottom: 20px;
+}
+
+footer .contact-info span {
+    display: inline-block;
+    margin: 0 15px;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+footer .social-icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer .social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+footer .social-icons a:hover {
+    color: #007BFF;
+}
+
+footer small {
+    display: block;
+    margin-top: 20px;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+        height: auto;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .schedule-form {
+        flex-direction: column;
+    }
+
+    button.schedule-btn,
+    select,
+    input[type="date"] {
+        min-width: 100%;
+        flex: unset;
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #004d40;
+    margin: 40px 0 20px;
+    font-size: 32px;
+    letter-spacing: 1px;
+}
+
+.tindakan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tindakan-table th,
+.tindakan-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tindakan-table th {
+    background-color: #00796b;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.tindakan-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tindakan-table tr:hover {
+    background-color: #e0f2f1;
+    transition: background-color 0.3s ease;
+}

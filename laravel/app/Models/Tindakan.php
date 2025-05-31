@@ -12,4 +12,14 @@ class Tindakan extends Model
         'nama_tindakan',
         'harga',
     ];
+
+
+    public function index()
+{
+    $tindakans = Tindakan::all();
+    return view('tindakan.index', compact('tindakans'));
 }
+
+}
+
+

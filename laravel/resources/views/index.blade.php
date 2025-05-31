@@ -18,8 +18,8 @@
                     <li><a href="{{ url('/') }}">home</a></li>
                     <li><a href="{{ url('/pasien') }}">pasien</a></li>
                     <li><a href="{{ url('/dokter') }}">Dokter</a></li>
-                    <li><a href="/tindak">tindakan</a></li>
-                    <li><a href="/kunjungan.html">kunjungan</a></li>
+                    <li><a href="{{ url('/tindakan') }}">Tindakan</a></li>
+                    <li><a href="{{ url('/kunjungan') }}">kunjungan</a></li>
                     <li><a href="/detail kunjungan.html">detail kunjungan</a></li>
                 </ul>
             </nav>

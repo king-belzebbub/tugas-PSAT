@@ -49,8 +49,8 @@
         <form action="/tindakan" method="POST" class="data-form">
             @csrf
             <h3>Tambah Tindakan</h3>
-            <input type="text" name="nama" placeholder="Nama Tindakan" required />
-            <input type="number" name="biaya" placeholder="Biaya" required />
+            <input type="text" name="nama_tindakan" placeholder="Nama_Tindakan" required />
+            <input type="text" name="harga" placeholder="harga" required />
             <button type="submit">Simpan Tindakan</button>
         </form>
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tindakans', function (Blueprint $table) {
             $table->id(); // Wajib: BIGINT UNSIGNED PRIMARY
             $table->string('nama_tindakan');
-            $table->decimal('harga', 8, 2);
+            $table->decimal('harga');
             $table->timestamps();
         });
 

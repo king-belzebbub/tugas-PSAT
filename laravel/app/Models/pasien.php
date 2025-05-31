@@ -25,7 +25,7 @@ class Pasien extends Model
 
 public function index()
 {
-    $dokters = Dokter::all();
-    return view('dokter.index', compact('dokters'));
+    $pasiens = Pasien::all();
+    return view('pasien.index', compact('pasiens'));
 }
 }

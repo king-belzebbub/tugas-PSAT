@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 
 class KunjunganController extends Controller
 {
-    public function index()
+    public function api()
     {
-        $data = Kunjungan::with(['dokter', 'pasien'])->get();
-        return response()->json($data);
+        return response()->json(Kunjungan::all());
     }
 
+    public function index()
+    {
+        $kunjungans = Kunjungan::all();
+        return view('kunjungan', compact('kunjungans'));
+    }
     public function store(Request $request)
     {
         $validated = $request->validate([

@@ -15,14 +15,14 @@
                     <li><a href="{{ url('/') }}">home</a></li>
                     <li><a href="{{ url('/pasien') }}">pasien</a></li>
                    <li><a href="{{ url('/dokter') }}">Dokter</a></li>
-                    <li><a href="/tindakan.html">tindakan</a></li>
+                    <li><a href="{{ url('/tindakan') }}">tindakan</a></li>
                     <li><a href="/kunjungan.html">kunjungan</a></li>
                     <li><a href="/detail kunjungan.html">detail kunjungan</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <h1>Daftar Dokter</h1>
+    <h1>Daftar Pasien</h1>
     <div class="container">
         <table class="pasien-table">
             <thead>

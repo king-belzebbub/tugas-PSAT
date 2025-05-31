@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 
 class TindakanController extends Controller
 {
+    public function api()
+    {
+        return response()->json(Tindakan::all());
+    }
+
     public function index()
     {
-        $data = Tindakan::all();
-        return response()->json($data, 200);
+        $tindakans = Tindakan::all();
+        return view('Tindakan', compact('tindakans'));
     }
 
     public function store(Request $request)

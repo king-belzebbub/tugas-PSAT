@@ -42,6 +42,15 @@
                     <td>{{ $kunjungan->dokter_id }}</td>
                     <td>{{ $kunjungan->tanggal}}</td>
                     <td>{{ $kunjungan->keluhan }}</td>
+                    <td>
+
+                        </form>
+                        <form action="{{ url('/kunjungan/' . $kunjungan->id) }}" method="POST" style="display:inline;"
+                            onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Hapus</button>
+                    </td>
                     </tr>
                 @endforeach
             </tbody>

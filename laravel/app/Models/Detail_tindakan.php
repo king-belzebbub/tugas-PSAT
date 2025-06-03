@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Detail_Tindakan extends Model
 {
+
+    public function index()
+    {
+        $detail_tindakans = Detail_Tindakan::all();
+        return view('detail.tindakan.index', compact('detail_tindakans'));
+    }
     protected $table = 'detail_tindakans';
 
     protected $fillable = [

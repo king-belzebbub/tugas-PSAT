@@ -8,15 +8,16 @@ use Illuminate\Support\Facades\Validator;
 
 class Detail_TindakanController extends Controller
 {
-    public function index()
+    public function api()
     {
-        $data = Detail_Tindakan::with(['kunjungan', 'tindakan'])->get();
-        return response()->json([
-            'success' => true,
-            'data' => $data
-        ], 200);
+        return response()->json(Detail_Tindakan::all());
     }
 
+    public function index()
+    {
+        $detail_tindakans = Detail_Tindakan::all();
+        return view('detail_tindakan', compact('detail_tindakans'));
+    }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

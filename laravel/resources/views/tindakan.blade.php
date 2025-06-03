@@ -18,7 +18,7 @@
                     <li><a href="{{ url('/dokter') }}">Dokter</a></li>
                     <li><a href="{{ url('/tindakan') }}">tindakan</a></li>
                     <li><a href="{{ url('/kunjungan') }}">kunjungan</a></li>
-                    <li><a href="/detail kunjungan.html">detail kunjungan</a></li>
+                    <li><a href="{{ url('/detail_tindakan') }}">detail_tindakan</a></li>
                 </ul>
             </nav>
         </div>

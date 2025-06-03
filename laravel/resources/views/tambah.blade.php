@@ -9,6 +9,25 @@
 
 <body>
 
+    <header>
+        <div class="nav-container container">
+            <div class="logo">
+                <img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}" alt="Logo">
+
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pasien">Pasien</a></li>
+                    <li><a href="/dokter">Dokter</a></li>
+                    <li><a href="/tindakan">Tindakan</a></li>
+                    <li><a href="/kunjungan">Kunjungan</a></li>
+                    <li><a href="/detail_tindakan">Detail Tindakan</a></li>
+                </ul>
+            </nav>
+        </div>
+        </header>
+
     <section class="form-section">
         <h2>Tambah Data</h2>
 
@@ -55,15 +74,15 @@
         </form>
 
         <!-- Form Tambah Kunjungan -->
-        <form action="/kunjungan" method="POST" class="data-form">
+        <form action="/kunjungan" method="POST">
             @csrf
-            <h3>Tambah Kunjungan</h3>
-            <input type="number" name="pasien_id" placeholder="ID Pasien" required />
-            <input type="number" name="dokter_id" placeholder="ID Dokter" required />
-            <input type="date" name="tanggal" required />
-            <textarea name="keluhan" placeholder="Keluhan" required></textarea>
-            <button type="submit">Simpan Kunjungan</button>
+            <input type="number" name="pasien_id" required>
+            <input type="number" name="dokter_id" required>
+            <input type="date" name="tanggal" required>
+            <textarea name="keluhan" required></textarea>
+            <button type="submit">Simpan</button>
         </form>
+
     </section>
 
     <footer>

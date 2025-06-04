@@ -19,10 +19,9 @@ use App\Models\Detail_Tindakan;
 */
 
 // Halaman utama
-Route::get('/', function () {
+route::get('/', function (){
     return view('index');
 });
-
 // Form tambah data (jika ada form khusus)
 Route::get('/tambah', function () {
     return view('tambah');

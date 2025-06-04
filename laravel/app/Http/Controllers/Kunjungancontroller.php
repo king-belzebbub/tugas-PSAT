@@ -16,6 +16,8 @@ class KunjunganController extends Controller
     {
         $kunjungans = Kunjungan::all();
         return view('kunjungan', compact('kunjungans'));
+
+        
     }
     public function store(Request $request)
     {

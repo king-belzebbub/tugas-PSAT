@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class TindakanController extends Controller
 {
-    public function api()
-    {
-        return response()->json(Tindakan::all());
-    }
-
     public function index()
     {
         $tindakans = Tindakan::all();
@@ -23,61 +18,36 @@ class TindakanController extends Controller
         $validated = $request->validate([
             'nama_tindakan' => 'required|string|max:255',
             'harga' => 'required|numeric|min:0',
-            'kode_icd' => 'required|string|unique:tindakans,kode_icd',
+            'kode_icd' => 'nullable|string|unique:tindakans,kode_icd',
         ]);
 
-        Tindakan::create([
-            'nama_tindakan' => $request->nama_tindakan,
-            'harga' => $request->harga,
-            'kode_icd' => $request->kode_icd,
-        ]);
+        Tindakan::create($validated);
 
         return redirect()->route('tindakan.index')->with('success', 'Tindakan berhasil ditambahkan');
     }
 
-    public function show($id)
-    {
-        $tindakan = Tindakan::find($id);
-
-        if (!$tindakan) {
-            return response()->json(['message' => 'Tindakan tidak ditemukan'], 404);
-        }
-
-        return response()->json($tindakan, 200);
-    }
-
     public function update(Request $request, $id)
     {
-        $tindakan = Tindakan::find($id);
-
-        if (!$tindakan) {
-            return response()->json(['message' => 'Tindakan tidak ditemukan'], 404);
-        }
+        $tindakan = Tindakan::findOrFail($id);
 
         $validated = $request->validate([
             'nama_tindakan' => 'required|string|max:255',
             'harga' => 'required|numeric|min:0',
-            'kode_icd' => 'required|string|unique:tindakans,kode_icd,'.$id,
+            'kode_icd' => 'nullable|string|unique:tindakans,kode_icd,' . $id,
         ]);
 
         $tindakan->update($validated);
 
-        return response()->json([
-            'message' => 'Tindakan berhasil diperbarui',
-            'data' => $tindakan
-        ], 200);
+        return redirect()->route('tindakan.index')->with('success', 'Tindakan berhasil diperbarui');
     }
 
     public function destroy($id)
     {
-        $tindakan = Tindakan::find($id);
-
-        if (!$tindakan) {
-            return response()->json(['message' => 'Tindakan tidak ditemukan'], 404);
-        }
-
+        $tindakan = Tindakan::findOrFail($id);
         $tindakan->delete();
 
-        return response()->json(['message' => 'Tindakan berhasil dihapus'], 200);
+        return redirect()->route('tindakan.index')->with('success', 'Tindakan berhasil dihapus');
     }
+
+    // Kalau memang tidak perlu dipakai, method create() dan show() bisa dihapus supaya controller lebih ringkas
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Detail_Tindakan;
+use App\Models\Kunjungan;
+use App\Models\Tindakan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,9 +17,13 @@ class Detail_TindakanController extends Controller
 
     public function index()
     {
-        $detail_tindakans = Detail_Tindakan::all();
-        return view('detail_tindakan', compact('detail_tindakans'));
+        $details = Detail_Tindakan::with(['kunjungan.pasien', 'tindakan'])->get();
+        $kunjungans = Kunjungan::with('pasien')->get();
+        $tindakans = Tindakan::all();
+
+        return view('detail_tindakan', compact('details', 'kunjungans', 'tindakans'));
     }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -35,13 +41,12 @@ class Detail_TindakanController extends Controller
             ], 422);
         }
 
+
         $detailTindakan = Detail_Tindakan::create($validator->validated());
 
-        return response()->json([
-            'success' => true,
-            'data'    => $detailTindakan,
-            'message' => 'Detail tindakan berhasil ditambahkan'
-        ], 201);
+        // Kalau request dari form biasa, redirect ke index dengan pesan sukses
+        return redirect()->route('detail-tindakan.index')
+            ->with('success', 'Detail tindakan berhasil ditambahkan');
     }
 
     public function show($id)
@@ -107,11 +112,16 @@ class Detail_TindakanController extends Controller
             ], 404);
         }
 
+        $detailTindakan = Detail_Tindakan::find($id);
+
+        if (!$detailTindakan) {
+            return redirect()->back()->with('error', 'Detail tindakan tidak ditemukan');
+        }
+
         $detailTindakan->delete();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Detail tindakan berhasil dihapus!'
-        ], 200);
+        return redirect()->back()->with('success', 'Detail tindakan berhasil dihapus!');
     }
+
+
 }

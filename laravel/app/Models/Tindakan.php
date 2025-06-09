@@ -8,11 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tindakan extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nama_tindakan',
-        'harga',
-        'kode_icd',
-    ];
+
+    protected $fillable = ['nama_tindakan', 'harga', 'kode_icd'];
 
 
     public function index()

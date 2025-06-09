@@ -59,7 +59,6 @@ Route::get('/tindakan', function () {
     $tindakans = Tindakan::all();
     return view('tindakan', compact('tindakans'));
 });
-
 /*
 |--------------------------------------------------------------------------
 | Kunjungan
@@ -89,4 +88,25 @@ Route::resource('detail_tindakan', Detail_TindakanController::class)->only(['ind
 Route::get('/detail_tindakan', function () {
     $detail_tindakans = Detail_Tindakan::all();
     return view('detail_tindakan', compact('detail_tindakans'));
+
 });
+
+
+
+Route::get('/detail-tindakan', function () {
+    $details = Detail_Tindakan::with(['kunjungan.pasien', 'tindakan'])->get();
+    $kunjungans = Kunjungan::with('pasien')->get();
+    $tindakans = Tindakan::all();
+
+    return view('detail_tindakan', compact('details', 'kunjungans', 'tindakans'));
+
+
+});
+
+Route::get('/detail-tindakan', [Detail_TindakanController::class, 'index']);
+Route::post('/detail-tindakan', [Detail_TindakanController::class, 'store']);
+Route::put('/detail-tindakan/{id}', [Detail_TindakanController::class, 'update']);
+Route::delete('/detail-tindakan/{id}', [Detail_TindakanController::class, 'destroy']);
+
+
+

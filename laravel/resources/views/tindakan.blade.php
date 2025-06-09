@@ -7,33 +7,36 @@
 </head>
 
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="logo">
-            <img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}" style="width: 150px; height: auto;" alt="Logo Liveal" />
-        </div>
-        <nav>
-            <ul>
-                <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('/pasien') }}">Pasien</a></li>
-                <li><a href="{{ url('/dokter') }}">Dokter</a></li>
-                <li><a href="{{ url('/tindakan') }}">Tindakan</a></li>
-                <li><a href="{{ url('/kunjungan') }}">Kunjungan</a></li>
-                <li><a href="/detail kunjungan.html">Detail Kunjungan</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- JUDUL -->
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}" style="width: 150px;"
+            alt="Logo Liveal" />
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{{ url('/') }}">Home</a></li>
+            <li><a href="{{ url('/pasien') }}">Pasien</a></li>
+            <li><a href="{{ url('/dokter') }}">Dokter</a></li>
+            <li><a href="{{ url('/tindakan') }}">Tindakan</a></li>
+            <li><a href="{{ url('/kunjungan') }}">Kunjungan</a></li>
+            <li><a href="{{ url('/detail-tindakan') }}">Detail Tindakan</a></li>
+        </ul>
+    </nav>
+</header>
     <h1>Daftar Tindakan</h1>
 
-    <!-- TOMBOL TAMBAH -->
+    @if(session('success'))
+        <div style="color: green; margin-bottom: 10px;">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="container">
         <div style="text-align: right; margin-bottom: 15px;">
             <button onclick="openOverlay()" class="tambah-btn">+ Tambah Tindakan</button>
         </div>
 
-        <!-- TABEL TINDAKAN -->
         <table class="tindakan-table">
             <thead>
                 <tr>
@@ -53,8 +56,8 @@
                         <td>Rp {{ number_format($tindakan->harga, 0, ',', '.') }}</td>
                         <td>
                             <button onclick='openOverlay(@json($tindakan))' class="edit-btn">Edit</button>
-                            <form action="{{ url('/tindakan/' . $tindakan->id) }}" method="POST" style="display:inline;"
-                                onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                            <form action="{{ route('tindakan.destroy', $tindakan->id) }}" method="POST"
+                                style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="delete-btn">Hapus</button>
@@ -66,12 +69,11 @@
         </table>
     </div>
 
-    <!-- OVERLAY FORM -->
     <div id="formOverlay" class="overlay" style="display: none;">
         <div class="overlay-content">
             <span class="close-btn" onclick="closeOverlay()">&times;</span>
             <h2 id="formTitle">Tambah Tindakan Baru</h2>
-            <form id="tindakanForm" method="POST">
+            <form id="tindakanForm" method="POST" action="{{ route('tindakan.store') }}">
                 @csrf
                 <input type="hidden" id="formMethod" name="_method" value="POST">
                 <input type="hidden" id="tindakanId" name="id" value="">
@@ -96,15 +98,10 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer style="background-color: #0a324d; color: white; padding: 40px 0; margin-top: 200px;">
-        <div style="text-align: center;">
-            <p style="margin: 5px 0;">© 2025 Kivotos Hospital, All rights reserved.</p>
-            <p style="margin: 0;">📍 Jl. Sakit No.666, Indonesia | ☎ (021) 124-8876</p>
-        </div>
+    <footer>
+        <!-- footer seperti biasa -->
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
         function openOverlay(tindakan = null) {
             const overlay = document.getElementById('formOverlay');
@@ -122,8 +119,11 @@
             } else {
                 formTitle.textContent = 'Tambah Tindakan Baru';
                 document.getElementById('formMethod').value = 'POST';
-                form.reset();
-                form.action = '/tindakan';
+                document.getElementById('tindakanId').value = '';
+                document.getElementById('nama_tindakan').value = '';
+                document.getElementById('kode_icd').value = '';
+                document.getElementById('harga').value = '';
+                form.action = '{{ route('tindakan.store') }}';
             }
 
             overlay.style.display = 'flex';
@@ -133,7 +133,7 @@
             document.getElementById('formOverlay').style.display = 'none';
         }
 
-        // Close overlay if click outside
+        // tutup overlay jika klik di luar form
         window.onclick = function (event) {
             const overlay = document.getElementById('formOverlay');
             if (event.target === overlay) {

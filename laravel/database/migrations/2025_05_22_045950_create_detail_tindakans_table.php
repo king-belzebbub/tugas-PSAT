@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detail_tindakans', function (Blueprint $table) {
-            $table->id(); // id utama
+            $table->id();
             $table->foreignId('kunjungan_id')->constrained('kunjungans')->onDelete('cascade');
             $table->foreignId('tindakan_id')->constrained('tindakans')->onDelete('cascade');
             $table->text('keterangan');
-            $table->decimal('subtotal', 8, 2);
+            $table->decimal('subtotal', 12, 2)->change();
         });
     }
 
@@ -25,6 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detai_tindakans');
+        Schema::table('detail_tindakans', function (Blueprint $table) {
+            $table->decimal('subtotal', 8, 2)->change(); // fallback jika di-rollback
+        });
     }
 };

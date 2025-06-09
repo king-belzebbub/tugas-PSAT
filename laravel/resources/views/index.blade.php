@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
-    
+
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                     <li><a href="{{ url('/dokter') }}">Dokter</a></li>
                     <li><a href="{{ url('/tindakan') }}">Tindakan</a></li>
                     <li><a href="{{ url('/kunjungan') }}">Kunjungan</a></li>
-                    <li><a href="/detail-kunjungan.html">Detail Kunjungan</a></li>
+                    <li><a href="{{ url('/detail-tindakan') }}">Detail Tindakan</a></li>
                 </ul>
 
                 <div class="navbar-extra">

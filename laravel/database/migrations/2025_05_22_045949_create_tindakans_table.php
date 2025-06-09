@@ -13,15 +13,12 @@ return new class extends Migration
     {
         Schema::create('tindakans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_tindakan', 100); // Tambah batas karakter
-            $table->decimal('harga', 12, 2)->default(0.00); // Default value
-            $table->string('kode_icd', 20)->unique(); // Pastikan kode unik
+            $table->string('nama_tindakan');
+            $table->string('kode_icd')->nullable();
+            $table->decimal('harga', 15, 2);
             $table->timestamps();
-
-            // Tambah index untuk kolom yang sering di-query
-            $table->index('kode_icd');
-            $table->index('nama_tindakan');
         });
+
     }
 
     /**

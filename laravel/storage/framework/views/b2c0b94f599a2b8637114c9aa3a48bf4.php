@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?php echo e(asset('css/index.css')); ?>">
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
-    
+
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                     <li><a href="<?php echo e(url('/dokter')); ?>">Dokter</a></li>
                     <li><a href="<?php echo e(url('/tindakan')); ?>">Tindakan</a></li>
                     <li><a href="<?php echo e(url('/kunjungan')); ?>">Kunjungan</a></li>
-                    <li><a href="/detail-kunjungan.html">Detail Kunjungan</a></li>
+                    <li><a href="<?php echo e(url('/detail-tindakan')); ?>">Detail Tindakan</a></li>
                 </ul>
 
                 <div class="navbar-extra">

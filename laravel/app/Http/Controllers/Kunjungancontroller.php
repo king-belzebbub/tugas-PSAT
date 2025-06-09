@@ -3,22 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kunjungan;
+use App\Models\Pasien;
+use App\Models\Dokter;
 use Illuminate\Http\Request;
 
 class KunjunganController extends Controller
 {
+    // Endpoint JSON untuk API
     public function api()
     {
-        return response()->json(Kunjungan::all());
+        return response()->json(Kunjungan::with('pasien', 'dokter')->get());
     }
 
+    // Menampilkan halaman index
     public function index()
     {
-        $kunjungans = Kunjungan::all();
-        return view('kunjungan', compact('kunjungans'));
-
-        
+        return view('kunjungan', [
+            'kunjungans' => Kunjungan::with('pasien', 'dokter')->get(),
+            'pasiens' => Pasien::all(),
+            'dokters' => Dokter::all(),
+        ]);
     }
+
+    // Simpan kunjungan baru
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -28,14 +35,13 @@ class KunjunganController extends Controller
             'keluhan'   => 'required|string',
         ]);
 
-        $kunjungan = Kunjungan::create($validated);
+        Kunjungan::create($validated);
 
-        return response()->json([
-            'message' => 'Kunjungan berhasil dibuat',
-            'data' => $kunjungan
-        ], 201);
+        return redirect()->route('kunjungan.index')
+            ->with('success', 'Kunjungan berhasil ditambahkan.');
     }
 
+    // Menampilkan detail kunjungan via JSON
     public function show($id)
     {
         $kunjungan = Kunjungan::with(['dokter', 'pasien'])->find($id);
@@ -47,6 +53,7 @@ class KunjunganController extends Controller
         return response()->json($kunjungan);
     }
 
+    // Hapus kunjungan
     public function destroy($id)
     {
         $kunjungan = Kunjungan::find($id);
@@ -57,6 +64,24 @@ class KunjunganController extends Controller
 
         $kunjungan->delete();
 
-        return response()->json(['message' => 'Kunjungan berhasil dihapus']);
+        return redirect()->route('kunjungan.index')
+            ->with('success', 'Kunjungan berhasil dihapus.');
+    }
+
+    // Update kunjungan
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'pasien_id' => 'required|exists:pasiens,id',
+            'dokter_id' => 'required|exists:dokters,id',
+            'tanggal' => 'required|date',
+            'keluhan' => 'required|string|max:500'
+        ]);
+
+        $kunjungan = Kunjungan::findOrFail($id);
+        $kunjungan->update($validated);
+
+        return redirect()->route('kunjungan.index')
+            ->with('success', 'Data kunjungan berhasil diperbarui');
     }
 }

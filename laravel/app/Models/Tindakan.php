@@ -11,6 +11,7 @@ class Tindakan extends Model
     protected $fillable = [
         'nama_tindakan',
         'harga',
+        'kode_icd',
     ];
 
 

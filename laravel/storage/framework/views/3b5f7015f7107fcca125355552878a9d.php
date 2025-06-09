@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tambah</title>
-    <link rel="stylesheet" href="{{ asset('css/tambah.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/tambah.css')); ?>">
 </head>
 
 <body>
@@ -12,7 +12,7 @@
     <header>
         <div class="nav-container container">
             <div class="logo">
-                <img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}" alt="Logo">
+                <img src="<?php echo e(asset('image/kivotoshospital_ba-style@nulla.top.png')); ?>" alt="Logo">
 
             </div>
             <nav>
@@ -32,8 +32,8 @@
         <h2>Tambah Data</h2>
 
         <!-- Form Tambah Pasien -->
-        <form action="{{ route('pasien.store') }}" method="POST">
-            @csrf
+        <form action="<?php echo e(route('pasien.store')); ?>" method="POST">
+            <?php echo csrf_field(); ?>
 
             <label for="nama">Nama</label>
             <input type="text" name="nama" id="nama" required>
@@ -54,28 +54,29 @@
 
         <!-- Form Tambah Dokter -->
         <form action="/dokter" method="POST" class="data-form">
-            @csrf
+            <?php echo csrf_field(); ?>
             <h3>Tambah Dokter</h3>
             <input type="text" name="nama" placeholder="Nama Dokter" required />
             <input type="text" name="spesialis" placeholder="Spesialis" required />
             <input type="text" name="jadwal_praktek" placeholder="Jadwal Praktek" required />
             <input type="text" name="no_str" placeholder="Nomor STR" required />
             <button type="submit">Simpan Dokter</button>
-            <a href="{{ url('/dokter') }}">Ke Halaman Dokter</a>
+            <a href="<?php echo e(url('/dokter')); ?>">Ke Halaman Dokter</a>
         </form>
 
         <!-- Form Tambah Tindakan -->
         <form action="/tindakan" method="POST" class="data-form">
-            @csrf
+            <?php echo csrf_field(); ?>
             <h3>Tambah Tindakan</h3>
             <input type="text" name="nama_tindakan" placeholder="Nama_Tindakan" required />
             <input type="text" name="harga" placeholder="harga" required />
+            <input type="text" name="kode_icd" placeholder="kode_icd" required />
             <button type="submit">Simpan Tindakan</button>
         </form>
 
         <!-- Form Tambah Kunjungan -->
         <form action="/kunjungan" method="POST">
-            @csrf
+            <?php echo csrf_field(); ?>
             <input type="number" name="pasien_id" required>
             <input type="number" name="dokter_id" required>
             <input type="date" name="tanggal" required>
@@ -93,3 +94,4 @@
 
 </html>
 
+<?php /**PATH C:\Users\cuken\Downloads\Desktop\Dokumen\GitHub\tugas-PSAT\laravel\resources\views/tambah.blade.php ENDPATH**/ ?>

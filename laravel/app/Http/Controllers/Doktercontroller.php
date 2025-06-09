@@ -8,33 +8,29 @@ use Illuminate\Support\Facades\Validator;
 
 class DokterController extends Controller
 {
-
-
-    public function api()
-{
-    return response()->json(Dokter::all());
-}
-
-public function index()
-{
-    $dokters = Dokter::all();
-    return view('dokter', compact('dokters'));
-}
+    public function index()
+    {
+        $data = Dokter::all();
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ], 200);
+    }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama'           => 'required|string|max:255',
-            'spesialis'   => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
+            'spesialis' => 'required|string|max:255',
             'jadwal_praktek' => 'required|string|max:255',
-            'no_str'         => 'required|string|unique:dokters,no_str|max:50'
+            'no_str' => 'required|string|unique:dokters,no_str|max:50'
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
                 'message' => 'Validasi gagal',
-                'errors'  => $validator->errors()
+                'errors' => $validator->errors()
             ], 422);
         }
 
@@ -42,7 +38,7 @@ public function index()
 
         return response()->json([
             'success' => true,
-            'data'    => $dokter,
+            'data' => $dokter,
             'message' => 'Dokter berhasil ditambahkan'
         ], 201);
     }
@@ -52,10 +48,16 @@ public function index()
         $dokter = Dokter::find($id);
 
         if (!$dokter) {
-            return response()->json(['message' => 'Dokter tidak ditemukan'], 404);
+            return response()->json([
+                'success' => false,
+                'message' => 'Dokter tidak ditemukan'
+            ], 404);
         }
 
-        return response()->json($dokter);
+        return response()->json([
+            'success' => true,
+            'data' => $dokter
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -63,21 +65,33 @@ public function index()
         $dokter = Dokter::find($id);
 
         if (!$dokter) {
-            return response()->json(['message' => 'Dokter tidak ditemukan'], 404);
+            return response()->json([
+                'success' => false,
+                'message' => 'Dokter tidak ditemukan'
+            ], 404);
         }
 
-        $validated = $request->validate([
-            'nama'           => 'required|string|max:255',
-            'spesialis'   => 'required|string|max:255',
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string|max:255',
+            'spesialis' => 'required|string|max:255',
             'jadwal_praktek' => 'required|string|max:255',
-            'no_str'         => 'required|string|max:50|unique:dokters,no_str,' . $id,
+            'no_str' => 'required|string|max:50|unique:dokters,no_str,'.$id
         ]);
 
-        $dokter->update($validated);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $dokter->update($validator->validated());
 
         return response()->json([
-            'message' => 'Data dokter berhasil diperbarui!',
-            'data'    => $dokter
+            'success' => true,
+            'data' => $dokter,
+            'message' => 'Data dokter berhasil diperbarui!'
         ]);
     }
 
@@ -86,11 +100,17 @@ public function index()
         $dokter = Dokter::find($id);
 
         if (!$dokter) {
-            return response()->json(['message' => 'Dokter tidak ditemukan'], 404);
+            return response()->json([
+                'success' => false,
+                'message' => 'Dokter tidak ditemukan'
+            ], 404);
         }
 
         $dokter->delete();
 
-        return response()->json(['message' => 'Data dokter berhasil dihapus!']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Data dokter berhasil dihapus!'
+        ]);
     }
 }

@@ -12,12 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tindakans', function (Blueprint $table) {
-            $table->id(); // Wajib: BIGINT UNSIGNED PRIMARY
-            $table->string('nama_tindakan');
-            $table->decimal('harga');
+            $table->id();
+            $table->string('nama_tindakan', 100); // Tambah batas karakter
+            $table->decimal('harga', 12, 2)->default(0.00); // Default value
+            $table->string('kode_icd', 20)->unique(); // Pastikan kode unik
             $table->timestamps();
-        });
 
+            // Tambah index untuk kolom yang sering di-query
+            $table->index('kode_icd');
+            $table->index('nama_tindakan');
+        });
     }
 
     /**

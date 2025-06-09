@@ -65,8 +65,20 @@ Route::get('/tindakan', function () {
 | Kunjungan
 |--------------------------------------------------------------------------
 */
+// Kunjungan routes
 Route::resource('kunjungan', KunjunganController::class)->only(['index', 'store', 'create', 'update', 'destroy']);
 Route::get('/kunjungan', [KunjunganController::class, 'index'])->name('kunjungan.index');
+
+// Edit form
+Route::get('/kunjungan/{kunjungan}/edit', [KunjunganController::class, 'edit'])->name('kunjungan.edit');
+
+// Update
+Route::put('/kunjungan/{kunjungan}', [KunjunganController::class, 'update'])->name('kunjungan.update');
+Route::patch('/kunjungan/{kunjungan}', [KunjunganController::class, 'update']);
+
+// Delete
+Route::delete('/kunjungan/{kunjungan}', [KunjunganController::class, 'destroy'])->name('kunjungan.destroy');
+
 
 /*
 |--------------------------------------------------------------------------

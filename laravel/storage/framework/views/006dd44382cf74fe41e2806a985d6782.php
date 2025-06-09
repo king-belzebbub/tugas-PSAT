@@ -3,22 +3,22 @@
 
 <head>
     <title>Daftar Tindakan</title>
-    <link rel="stylesheet" href="{{ asset('css/tindakan.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/tindakan.css')); ?>">
 </head>
 
 <body>
     <!-- HEADER -->
     <header>
         <div class="logo">
-            <img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}" style="width: 150px; height: auto;" alt="Logo Liveal" />
+            <img src="<?php echo e(asset('image/kivotoshospital_ba-style@nulla.top.png')); ?>" style="width: 150px; height: auto;" alt="Logo Liveal" />
         </div>
         <nav>
             <ul>
-                <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('/pasien') }}">Pasien</a></li>
-                <li><a href="{{ url('/dokter') }}">Dokter</a></li>
-                <li><a href="{{ url('/tindakan') }}">Tindakan</a></li>
-                <li><a href="{{ url('/kunjungan') }}">Kunjungan</a></li>
+                <li><a href="<?php echo e(url('/')); ?>">Home</a></li>
+                <li><a href="<?php echo e(url('/pasien')); ?>">Pasien</a></li>
+                <li><a href="<?php echo e(url('/dokter')); ?>">Dokter</a></li>
+                <li><a href="<?php echo e(url('/tindakan')); ?>">Tindakan</a></li>
+                <li><a href="<?php echo e(url('/kunjungan')); ?>">Kunjungan</a></li>
                 <li><a href="/detail kunjungan.html">Detail Kunjungan</a></li>
             </ul>
         </nav>
@@ -45,23 +45,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($tindakans as $tindakan)
+                <?php $__currentLoopData = $tindakans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tindakan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $tindakan->id }}</td>
-                        <td>{{ $tindakan->nama_tindakan }}</td>
-                        <td>{{ $tindakan->kode_icd ?? '-' }}</td>
-                        <td>Rp {{ number_format($tindakan->harga, 0, ',', '.') }}</td>
+                        <td><?php echo e($tindakan->id); ?></td>
+                        <td><?php echo e($tindakan->nama_tindakan); ?></td>
+                        <td><?php echo e($tindakan->kode_icd ?? '-'); ?></td>
+                        <td>Rp <?php echo e(number_format($tindakan->harga, 0, ',', '.')); ?></td>
                         <td>
-                            <button onclick='openOverlay(@json($tindakan))' class="edit-btn">Edit</button>
-                            <form action="{{ url('/tindakan/' . $tindakan->id) }}" method="POST" style="display:inline;"
+                            <button onclick='openOverlay(<?php echo json_encode($tindakan, 15, 512) ?>)' class="edit-btn">Edit</button>
+                            <form action="<?php echo e(url('/tindakan/' . $tindakan->id)); ?>" method="POST" style="display:inline;"
                                 onsubmit="return confirm('Yakin ingin menghapus data ini?');">
-                                @csrf
-                                @method('DELETE')
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
                                 <button type="submit" class="delete-btn">Hapus</button>
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
     </div>
@@ -72,7 +72,7 @@
             <span class="close-btn" onclick="closeOverlay()">&times;</span>
             <h2 id="formTitle">Tambah Tindakan Baru</h2>
             <form id="tindakanForm" method="POST">
-                @csrf
+                <?php echo csrf_field(); ?>
                 <input type="hidden" id="formMethod" name="_method" value="POST">
                 <input type="hidden" id="tindakanId" name="id" value="">
 
@@ -144,3 +144,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\Users\cuken\Downloads\Desktop\Dokumen\GitHub\tugas-PSAT\laravel\resources\views/tindakan.blade.php ENDPATH**/ ?>

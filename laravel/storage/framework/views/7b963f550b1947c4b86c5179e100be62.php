@@ -3,22 +3,22 @@
 
 <head>
     <title>Daftar Dokter</title>
-    <link rel="stylesheet" href="{{ asset('css/dokter.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/dokter.css')); ?>">
 </head>
 
 <body>
     <!-- HEADER -->
     <header>
         <div class="logo-center">
-            <img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}" style="width: 150px; height: auto;" alt="Logo Liveal" />
+            <img src="<?php echo e(asset('image/kivotoshospital_ba-style@nulla.top.png')); ?>" style="width: 150px; height: auto;" alt="Logo Liveal" />
         </div>
         <nav>
             <ul class="menu-nav">
-                <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('/pasien') }}">Pasien</a></li>
-                <li><a href="{{ url('/dokter') }}">Dokter</a></li>
-                <li><a href="{{ url('/tindakan') }}">Tindakan</a></li>
-                <li><a href="{{ url('/kunjungan') }}">Kunjungan</a></li>
+                <li><a href="<?php echo e(url('/')); ?>">Home</a></li>
+                <li><a href="<?php echo e(url('/pasien')); ?>">Pasien</a></li>
+                <li><a href="<?php echo e(url('/dokter')); ?>">Dokter</a></li>
+                <li><a href="<?php echo e(url('/tindakan')); ?>">Tindakan</a></li>
+                <li><a href="<?php echo e(url('/kunjungan')); ?>">Kunjungan</a></li>
                 <li><a href="/detail kunjungan.html">Detail Kunjungan</a></li>
             </ul>
         </nav>
@@ -46,25 +46,25 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($dokters as $dokter)
+                <?php $__currentLoopData = $dokters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dokter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $dokter->id }}</td>
-                        <td>{{ $dokter->nama }}</td>
-                        <td>{{ $dokter->spesialis }}</td>
-                        <td>{{ $dokter->jadwal_praktek }}</td>
-                        <td>{{ $dokter->no_str }}</td>
+                        <td><?php echo e($dokter->id); ?></td>
+                        <td><?php echo e($dokter->nama); ?></td>
+                        <td><?php echo e($dokter->spesialis); ?></td>
+                        <td><?php echo e($dokter->jadwal_praktek); ?></td>
+                        <td><?php echo e($dokter->no_str); ?></td>
                         <td>
                             <span class="status-badge">Secure Data</span>
-                            <button onclick="openOverlay({{ $dokter }})" class="edit-btn">Edit</button>
-                            <form action="{{ url('/dokter/' . $dokter->id) }}" method="POST" style="display:inline;"
+                            <button onclick="openOverlay(<?php echo e($dokter); ?>)" class="edit-btn">Edit</button>
+                            <form action="<?php echo e(url('/dokter/' . $dokter->id)); ?>" method="POST" style="display:inline;"
                                 onsubmit="return confirm('Yakin ingin menghapus data ini?');">
-                                @csrf
-                                @method('DELETE')
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
                                 <button type="submit" class="delete-btn">Hapus</button>
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
     </div>
@@ -75,7 +75,7 @@
             <span class="close-btn" onclick="closeOverlay()">&times;</span>
             <h2 id="formTitle">Tambah Dokter Baru</h2>
             <form id="dokterForm" method="POST">
-                @csrf
+                <?php echo csrf_field(); ?>
                 <input type="hidden" id="formMethod" name="_method" value="POST">
                 <input type="hidden" id="dokterId" name="id" value="">
 
@@ -155,3 +155,4 @@ function openOverlay(dokter = null) {
 </body>
 
 </html>
+<?php /**PATH C:\Users\cuken\Downloads\Desktop\Dokumen\GitHub\tugas-PSAT\laravel\resources\views/dokter.blade.php ENDPATH**/ ?>

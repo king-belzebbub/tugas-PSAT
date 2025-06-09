@@ -3,23 +3,23 @@
 
 <head>
     <title>Daftar Kunjungan</title>
-    <link rel="stylesheet" href="{{ asset('css/kunjungan.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/kunjungan.css')); ?>">
 </head>
 
 <body>
     <!-- HEADER -->
     <header>
         <div class="logo">
-            <img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}" style="width: 150px;"
+            <img src="<?php echo e(asset('image/kivotoshospital_ba-style@nulla.top.png')); ?>" style="width: 150px;"
                 alt="Logo Liveal" />
         </div>
         <nav>
             <ul>
-                <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('/pasien') }}">Pasien</a></li>
-                <li><a href="{{ url('/dokter') }}">Dokter</a></li>
-                <li><a href="{{ url('/tindakan') }}">Tindakan</a></li>
-                <li><a href="{{ url('/kunjungan') }}">Kunjungan</a></li>
+                <li><a href="<?php echo e(url('/')); ?>">Home</a></li>
+                <li><a href="<?php echo e(url('/pasien')); ?>">Pasien</a></li>
+                <li><a href="<?php echo e(url('/dokter')); ?>">Dokter</a></li>
+                <li><a href="<?php echo e(url('/tindakan')); ?>">Tindakan</a></li>
+                <li><a href="<?php echo e(url('/kunjungan')); ?>">Kunjungan</a></li>
             </ul>
         </nav>
     </header>
@@ -43,24 +43,24 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($kunjungans as $kunjungan)
+                <?php $__currentLoopData = $kunjungans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kunjungan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $kunjungan->id }}</td>
-                        <td>{{ $kunjungan->pasien->nama }}</td>
-                        <td>{{ $kunjungan->dokter->nama }}</td>
-                        <td>{{ $kunjungan->tanggal }}</td>
-                        <td>{{ $kunjungan->keluhan }}</td>
+                        <td><?php echo e($kunjungan->id); ?></td>
+                        <td><?php echo e($kunjungan->pasien->nama); ?></td>
+                        <td><?php echo e($kunjungan->dokter->nama); ?></td>
+                        <td><?php echo e($kunjungan->tanggal); ?></td>
+                        <td><?php echo e($kunjungan->keluhan); ?></td>
                         <td>
-                            <button onclick='openOverlay(@json($kunjungan))' class="edit-btn">Edit</button>
-                            <form action="{{ url('/kunjungan/' . $kunjungan->id) }}" method="POST" style="display:inline;"
+                            <button onclick='openOverlay(<?php echo json_encode($kunjungan, 15, 512) ?>)' class="edit-btn">Edit</button>
+                            <form action="<?php echo e(url('/kunjungan/' . $kunjungan->id)); ?>" method="POST" style="display:inline;"
                                 onsubmit="return confirm('Yakin ingin menghapus data ini?');">
-                                @csrf
-                                @method('DELETE')
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
                                 <button type="submit" class="delete-btn">Hapus</button>
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
     </div>
@@ -71,25 +71,25 @@
             <span class="close-btn" onclick="closeOverlay()">&times;</span>
             <h2 id="formTitle">Tambah Kunjungan</h2>
             <form id="kunjunganForm" method="POST" action="/kunjungan">
-                @csrf
+                <?php echo csrf_field(); ?>
                 <input type="hidden" id="formMethod" name="_method" value="POST">
                 <input type="hidden" id="kunjunganId" name="id">
 
                 <div class="form-group">
                     <label for="pasien_id">Pasien</label>
                     <select name="pasien_id" id="pasien_id" required>
-                        @foreach ($pasiens as $pasien)
-                            <option value="{{ $pasien->id }}">{{ $pasien->nama }}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $pasiens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pasien): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($pasien->id); ?>"><?php echo e($pasien->nama); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="dokter_id">Dokter</label>
                     <select name="dokter_id" id="dokter_id" required>
-                        @foreach ($dokters as $dokter)
-                            <option value="{{ $dokter->id }}">{{ $dokter->nama }}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $dokters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dokter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($dokter->id); ?>"><?php echo e($dokter->nama); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
 
@@ -156,3 +156,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\Users\cuken\Downloads\Desktop\Dokumen\GitHub\tugas-PSAT\laravel\resources\views/kunjungan.blade.php ENDPATH**/ ?>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rumah Sakit - Halaman Utama</title>
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/index.css')); ?>">
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
     
@@ -17,17 +17,17 @@
         <div class="container nav-container">
             <div class="logo-text-wrapper">
                 <a href="#" class="logo">
-                    <img src="{{ asset('image/kivotoshospital_ba-style@nulla.top.png') }}"
+                    <img src="<?php echo e(asset('image/kivotoshospital_ba-style@nulla.top.png')); ?>"
                         style="width: 120px; height: auto;" alt="Logo kivotos" />
                 </a>
             </div>
             <nav>
                 <ul class="rounded-menu">
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('/pasien') }}">Pasien</a></li>
-                    <li><a href="{{ url('/dokter') }}">Dokter</a></li>
-                    <li><a href="{{ url('/tindakan') }}">Tindakan</a></li>
-                    <li><a href="{{ url('/kunjungan') }}">Kunjungan</a></li>
+                    <li><a href="<?php echo e(url('/')); ?>">Home</a></li>
+                    <li><a href="<?php echo e(url('/pasien')); ?>">Pasien</a></li>
+                    <li><a href="<?php echo e(url('/dokter')); ?>">Dokter</a></li>
+                    <li><a href="<?php echo e(url('/tindakan')); ?>">Tindakan</a></li>
+                    <li><a href="<?php echo e(url('/kunjungan')); ?>">Kunjungan</a></li>
                     <li><a href="/detail-kunjungan.html">Detail Kunjungan</a></li>
                 </ul>
 
@@ -44,7 +44,7 @@
         <div class="hero-content">
             <h1>Pelayanan Kesehatan Terbaik untuk Keluarga Anda</h1>
             <p>Bersama kami, kesehatan Anda prioritas utama</p>
-            <a href="{{ url('/dokter') }}" class="btn-outline">Lihat Jadwal Dokter</a>
+            <a href="<?php echo e(url('/dokter')); ?>" class="btn-outline">Lihat Jadwal Dokter</a>
         </div>
     </section>
 
@@ -112,3 +112,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\Users\cuken\Downloads\Desktop\Dokumen\GitHub\tugas-PSAT\laravel\resources\views/index.blade.php ENDPATH**/ ?>

@@ -32,6 +32,7 @@
                     <th>tindakan_id</th>
                     <th>keterangan</th>
                     <th>subtotal</th>
+                    <th>lainnya</th>
                 </tr>
             </thead>
             <tbody>

@@ -17,15 +17,13 @@ header {
 }
 
 /* Logo */
-.logo-center img {
-    width: 120px;
+.logo img {
+    width: 150px;
     height: auto;
-    display: block;
-    margin: 0 auto;
 }
 
 /* Menu Navigasi */
-.menu-nav {
+nav ul {
     list-style: none;
     display: flex;
     gap: 25px;
@@ -34,7 +32,7 @@ header {
     justify-content: center;
 }
 
-.menu-nav li a {
+nav ul li a {
     text-decoration: none;
     color: #ccc;
     font-weight: bold;
@@ -43,8 +41,8 @@ header {
     transition: all 0.3s ease;
 }
 
-.menu-nav li a:hover,
-.menu-nav li a:focus {
+nav ul li a:hover,
+nav ul li a:focus {
     background-color: #549eb5;
     color: #ffffff;
     box-shadow: 0 0 10px #7a7dfb;
@@ -69,44 +67,32 @@ h1 {
 }
 
 /* Table Style */
-.pasien-table {
+.kunjungan-table {
     width: 100%;
     border-collapse: collapse;
     color: #fff;
 }
 
-.pasien-table th,
-.pasien-table td {
+.kunjungan-table th,
+.kunjungan-table td {
     padding: 15px 20px;
     text-align: left;
 }
 
-.pasien-table th {
+.kunjungan-table th {
     background-color: #2e305e;
     color: #bcbcff;
     font-size: 14px;
     letter-spacing: 1px;
 }
 
-.pasien-table tr {
+.kunjungan-table tr {
     background-color: #474ca7;
     transition: background-color 0.3s ease;
 }
 
-.pasien-table tr:hover {
+.kunjungan-table tr:hover {
     background-color: #4a8faa;
-}
-
-/* Status Badge */
-.status-badge {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-    font-weight: bold;
-    background-color: #4dc0b5;
-    color: white;
-    margin-right: 10px;
 }
 
 /* Tombol Hapus */
@@ -211,6 +197,7 @@ h1 {
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
     width: 100%;
     padding: 10px;
